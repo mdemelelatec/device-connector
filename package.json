@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "express": "4.16.4",
+    "body-parser": "1.18.3",
+    "websocket": "1.0.31"
+   },
+  "description": "WebSocket Device Connector ",
+  "devDependencies": {},
+  "files": [],
+  "name": "websocketdeviceconnector",
+  "scripts": {
+    "start": "node  websocket_server.js"
+  },
+  "engines": {
+    "node": ">=14.x"
+  },
+  "version": "1.0.0"
+}
