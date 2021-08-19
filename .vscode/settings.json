@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/dd7ce751-e3c9-44ac-8c09-f27014083506/resourceGroups/Device-Management/providers/Microsoft.Web/sites/device-connector",
+    "appService.deploySubpath": "."
+}

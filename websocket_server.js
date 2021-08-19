@@ -5,11 +5,18 @@ var WebSocketServer = require("websocket").server;
 var express = require("express");
 var bodyParser = require("body-parser");
 
+const oDataClient = require("odata").o;
+
+const oDeviceManagementClient = oDataClient('http://localhost:4004/device-management-api/$metadata');
+
+
+oDeviceManagementClient.get('Device').query().then((data) => { console.log(data); }).catch((error) => { console.log(error); });
+
+
 var port = process.env.PORT || 80;
 var httpServer = http.createServer();
 
-
-httpServer.listen(port, function () {
+httpServer.listen(port, async function () {
 
     console.info("xbase_wss_device_connector HTTPs Server is up and listening von internal port: " + httpServer.address().port);
 
@@ -23,6 +30,8 @@ httpServer.listen(port, function () {
         res.send('<b>ELATEC websocket_server:</b>' + "<p>Report: " + JSON.stringify(process.report.getReport(),null,"<p>"));
 
       });
+
+
     httpServer.on("request", app);
 
     var webSocketServer = new WebSocketServer({
@@ -35,7 +44,7 @@ httpServer.listen(port, function () {
     });
 
     webSocketServer.on('connect', function (webSocketConnection) {
-        console.info("WebSocket connected", webSocketConnection);
+        console.info("WebSocket connected");
     });
 
 
@@ -57,7 +66,7 @@ httpServer.listen(port, function () {
 
                     try {
 
-                        console.log("Message received: ", oMessage.utf8Data);
+                        console.log("Message received: ");//, oMessage.utf8Data);
                         var oMessageData = JSON.parse(oMessage.utf8Data);
 
 
